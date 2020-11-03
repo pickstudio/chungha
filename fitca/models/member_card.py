@@ -2,3 +2,12 @@
 
 from django.db import models
 from enum import Enum
+from .member import Member
+from .card import Card
+
+
+class MemberCard(models.Model):
+    member = models.ForeignKey(Member)
+    card = models.ForeignKey(Card)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
