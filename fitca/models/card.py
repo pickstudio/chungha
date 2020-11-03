@@ -1,9 +1,11 @@
 from django.db import models
 from enum import Enum
 from .tag import Tag
+from .benefit import Benefit
 
 
 class Card(models.Model):
+    # 브랜드 visa master amex
     class BRAND(Enum):
         VISA = 'visa'
         MASTER = 'master'
@@ -13,8 +15,8 @@ class Card(models.Model):
     # belongs to issuer
     name = models.CharField()
     # 혜택 benefits
-    # image
-    # 브랜드 visa master amex
+    benefits = models.ManyToManyField(Benefit)
+    image_url = models.CharField()
     tags = models.ManyToManyField(Tag)  # benefit categories 특징을 달 수 있다.
     opened_at = models.DateTimeField()  # 출시일
     closed_at = models.DateTimeField()  # 발매 중단일
